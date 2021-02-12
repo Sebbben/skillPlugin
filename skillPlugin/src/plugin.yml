@@ -16,3 +16,6 @@ commands:
       - se
       - skillsexp
       - skillexperience
+  resetPlayerData:
+    description: reset skills of current player
+    usage: /<command>

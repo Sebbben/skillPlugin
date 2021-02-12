@@ -1,59 +1,49 @@
 package me.Sebbben.skillPlugin.classes;
 
-import java.util.Arrays;
-import java.util.List;
+import me.Sebbben.skillPlugin.globals;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class playerData {
-    private int
-            exp,
-            lvl,
-            miningLvl,
-            excavationLvl,
-            farmingLvl,
-            deforestationLvl,
-            fishingLvl;
+    private static final Map<String,Integer> playerStats = new HashMap<>();
 
-    public playerData(
-            String exp,
-            String lvl,
-            String miningLvl,
-            String excavationLvl,
-            String farmingLvl,
-            String deforestationLvl,
-            String fishingLvl
-            ) {
-        this.exp = Integer.valueOf(exp);
-        this.lvl = Integer.valueOf(lvl);
-        this.miningLvl = Integer.valueOf(miningLvl);
-        this.excavationLvl = Integer.valueOf(excavationLvl);
-        this.farmingLvl = Integer.valueOf(farmingLvl);
-        this.deforestationLvl = Integer.valueOf(deforestationLvl);
-        this.fishingLvl = Integer.valueOf(fishingLvl);
+    public playerData() {
+        this.setPlayerStats("exp", 0);
+        this.setPlayerStats("lvl",0);
+        this.setPlayerStats("expReq", 100);
+        this.setPlayerStats("skillPoints",0);
+    }
 
-
+    public void setPlayerStats(String key,int val) {
+        playerStats.put(key,val);
+    }
+    public void addPlayerStats(String key, int val) {
+        this.setPlayerStats(key, this.getPlayerStats().get(key) + val);
     }
 
     public void addExp(int amount) {
-        this.exp += amount;
+        amount += this.getPlayerStats().get("exp");
+        this.setPlayerStats("exp", amount);
+    }
+
+    public Map<String, Integer> getPlayerStats() {
+        return playerStats;
     }
 
     public int getExp() {
-        return this.exp;
-    }
-    public void restExp() {
-        this.exp = 0;
+        return this.getPlayerStats().get("exp");
     }
 
-    public List<String> getAllVars() {
-        return Arrays.asList(
-                String.valueOf(exp),
-                String.valueOf(lvl),
-                String.valueOf(miningLvl),
-                String.valueOf(excavationLvl),
-                String.valueOf(farmingLvl),
-                String.valueOf(deforestationLvl),
-                String.valueOf(fishingLvl)
-        );
+
+    public int getExpRequiredForNextLvl() {
+        return this.getPlayerStats().get("expReq");
     }
 
+    public void levelUp() {
+        this.addPlayerStats("exp", -this.getExpRequiredForNextLvl());
+        this.setPlayerStats("expReq", (int) (this.getPlayerStats().get("expReq") * globals.levelUpMultiplier));
+        this.addPlayerStats("skillPoints", 1);
+        this.addPlayerStats("lvl",1);
+    }
 }
