@@ -1,0 +1,11 @@
+name: skills
+version: 1.0
+api-version: 1.16
+main: me.Sebbben.skillPlugin.main
+commands:
+  resetPlayerData:
+    description: reset skills of current player
+    usage: /<command>
+  test:
+    description: test command for testing features
+    usage: /<command>
