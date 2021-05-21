@@ -1,5 +1,6 @@
 package me.Sebbben.skillPlugin.commands;
 
+import me.Sebbben.skillPlugin.Files.playerDataConfig;
 import me.Sebbben.skillPlugin.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,7 +17,7 @@ public class resetPlayerData implements CommandExecutor {
             if(cmd.getName().equalsIgnoreCase("resetPlayerData")){
                 if (sender.hasPermission("skillplugin.totalWipe")) {
                     Main.playerData = new HashMap<>();
-                    Main.data.getConfig().set("data", "");
+                    playerDataConfig.get().set("data", "");
                     sender.sendMessage("All Data Wiped");
                 }
             }

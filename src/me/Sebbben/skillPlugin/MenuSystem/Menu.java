@@ -6,6 +6,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public abstract class Menu implements InventoryHolder {
 
@@ -15,11 +16,15 @@ public abstract class Menu implements InventoryHolder {
 
     public Menu(PlayerMenuUtility playerMenuUtility) {
         this.playerMenuUtility = playerMenuUtility;
+        ItemMeta fillerMeta = FILLER_GLASS.getItemMeta();
+        fillerMeta.setDisplayName(" ");
+        FILLER_GLASS.setItemMeta(fillerMeta);
     }
     public abstract String getMenuName();
     public abstract int getSlots();
     public abstract void handleMenu(InventoryClickEvent e);
     public abstract void setMenuItems();
+
 
     @Override
     public Inventory getInventory() {
@@ -33,4 +38,11 @@ public abstract class Menu implements InventoryHolder {
         this.playerMenuUtility.getOwner().openInventory(inventory);
     }
 
+    protected void addMenuGlass() {
+        for (int i = 45; i < 54; i++) {
+            if (inventory.getItem(i) == null) {
+                inventory.setItem(i,FILLER_GLASS);
+            }
+        }
+    }
 }

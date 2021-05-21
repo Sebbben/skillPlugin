@@ -1,7 +1,5 @@
 package me.Sebbben.skillPlugin;
 
-import me.Sebbben.skillPlugin.Files.DataManager;
-
 import java.util.HashMap;
 import java.util.Map;
 

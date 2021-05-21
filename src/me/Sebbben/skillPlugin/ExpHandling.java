@@ -1,6 +1,6 @@
 package me.Sebbben.skillPlugin;
 
-import me.Sebbben.skillPlugin.classes.playerData;
+import me.Sebbben.skillPlugin.classes.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.HumanEntity;
@@ -9,9 +9,8 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 import java.util.List;
 
-public class expHandeling {
+public class ExpHandling {
     public void blockBreakingExp(HumanEntity player, Material blockMat) {
-
 
         List<Material> tier1 = Arrays.asList(
                 Material.GRASS_BLOCK,
@@ -52,11 +51,11 @@ public class expHandeling {
                 Material.ANCIENT_DEBRIS
         );
 
-        playerData playerData = Main.playerData.get(player.getUniqueId().toString());
+        PlayerData playerData = Main.playerData.get(player.getUniqueId().toString());
         if(playerData == null) {
-            Main.playerData.put(player.getUniqueId().toString(),new playerData());
+            Main.playerData.put(player.getUniqueId().toString(),new PlayerData());
             playerData = Main.playerData.get(player.getUniqueId().toString());
-        }
+    }
 
 
         if (tier1.contains(blockMat)) {
@@ -70,8 +69,8 @@ public class expHandeling {
         }
 
         while (playerData.getExp() >= playerData.getExpRequiredForNextLvl()) {
-            player.sendMessage("You leveled up to level " + playerData.getPlayerStats().get("lvl"));
             playerData.levelUp();
+            player.sendMessage("You leveled up to level " + playerData.getPlayerStats().get("lvl"));
             ((Player) player).playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.5F,0.5F);
             ((Player) player).playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_TWINKLE, 0.5F,0.5F);
         }

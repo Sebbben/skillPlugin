@@ -13,7 +13,7 @@ public class BlockBreak implements Listener {
         HumanEntity player = e.getPlayer();
         Material blockMat = e.getBlock().getType();
 
-        Main.expHandeler.blockBreakingExp(player,blockMat);
+        Main.expHandler.blockBreakingExp(player,blockMat);
 
     }
 }

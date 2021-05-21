@@ -1,6 +1,5 @@
 package me.Sebbben.skillPlugin;
 
-import me.Sebbben.skillPlugin.Files.DataManager;
 import me.Sebbben.skillPlugin.Listeners.BlockBreak;
 import me.Sebbben.skillPlugin.classes.playerData;
 import me.Sebbben.skillPlugin.commands.resetPlayerData;

@@ -5,11 +5,11 @@ import org.bukkit.entity.HumanEntity;
 
 import java.util.*;
 
-public class playerData {
+public class PlayerData {
     private static final Map<String,Integer> playerStats = new HashMap<>();
     private static Map<String, Integer> skills = null;
 
-    public playerData() {
+    public PlayerData() {
         this.setPlayerStats("exp", 0);
         this.setPlayerStats("lvl",0);
         this.setPlayerStats("expReq", 100);
@@ -42,14 +42,14 @@ public class playerData {
     public int getExpRequiredForNextLvl() {
         return this.getPlayerStats().get("expReq");
     }
+    public int getSkillPoints() {
+        return this.getPlayerStats().get("skillPoints");
+    }
     public Map<String, Integer> getPlayerStats() {
         return playerStats;
     }
     public Map<String, Integer> getPlayerSkills() {
         return skills;
-    }
-    public int getSkillPoints() {
-        return this.getPlayerStats().get("skillPoints");
     }
     public void listSkills(HumanEntity player) {
         for (Map.Entry<String, Integer> skill : skills.entrySet()) {
