@@ -91,6 +91,12 @@ public class MainMenu extends Menu {
         close.setItemMeta(closeMeta);
         inventory.setItem(49, close);
 
+        for (int i = 0; i < 45; i++) {
+            if (inventory.getItem(i) == null) {
+                inventory.setItem(i,FILLER_GLASS_2);
+            }
+        }
+
         addMenuGlass();
     }
 }
