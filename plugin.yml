@@ -1,0 +1,19 @@
+name: skills
+version: 1.0
+api-version: 1.16
+main: me.Sebbben.skillPlugin.Main
+commands:
+  resetPlayerData:
+    description: reset skills of current player
+    usage: /<command>
+  mainMenu:
+    description: open main menu
+    usage: /<command>
+    aliases:
+      - m
+      - mm
+  backpack:
+    description: open backpacks
+    usage: /<command> <arg>
+    aliases:
+      - bp
