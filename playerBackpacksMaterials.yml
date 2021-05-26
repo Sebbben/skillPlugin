@@ -1,0 +1,9 @@
+backpacks:
+  Miner:
+    - stone
+    - iron_ore
+    - gold_ore
+    - diamond_ore
+    - diamond
+    - redstone
+    - redstone_ore

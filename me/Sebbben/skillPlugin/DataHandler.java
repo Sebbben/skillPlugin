@@ -31,6 +31,8 @@ public class DataHandler {
             this.loadBackpacks();
         }
 
+        this.loadConfigValues();
+
     }
 
     private void loadBackpacks() {
@@ -45,7 +47,6 @@ public class DataHandler {
 
         });
     }
-
     private void saveBackpacks() {
         HashMap<String, HashMap<String, ItemStack[]>> backpacks = Main.getBackpacks();
         for (Map.Entry<String, HashMap<String, ItemStack[]>> player : backpacks.entrySet()) {
@@ -55,6 +56,7 @@ public class DataHandler {
         }
         playerBackpacks.save();
     }
+
     private void savePlayerExps() {
 
         // Loop through player uuid's
@@ -73,7 +75,6 @@ public class DataHandler {
 
         playerDataConfig.save();
     }
-
     private void restoreData() {
         FileConfiguration config = playerDataConfig.get();
 
@@ -89,6 +90,9 @@ public class DataHandler {
         });
     }
 
+    private void loadConfigValues() {
+        Main.setLevelUpMultiplier((double) Main.getPlugin().getConfig().get("levelUpMultiplier"));
 
+    }
 
 }

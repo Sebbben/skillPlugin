@@ -5,6 +5,7 @@ import me.Sebbben.skillPlugin.Commands.BackpackCommand;
 import me.Sebbben.skillPlugin.Commands.MainMenuCommand;
 import me.Sebbben.skillPlugin.Commands.ResetPlayerData;
 import me.Sebbben.skillPlugin.Files.playerBackpacks;
+import me.Sebbben.skillPlugin.Files.playerBackpacksMaterials;
 import me.Sebbben.skillPlugin.Files.playerDataConfig;
 import me.Sebbben.skillPlugin.Listeners.BlockBreak;
 import me.Sebbben.skillPlugin.Listeners.MenuListener;
@@ -65,6 +66,10 @@ public class Main extends JavaPlugin {
         }
     }
 
+    public static void setLevelUpMultiplier(double lvlUpMultiplier) {
+        levelUpMultiplier = lvlUpMultiplier;
+    }
+
     @Override
     public void onLoad() {
         plugin = this;
@@ -73,14 +78,18 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
+
         playerDataConfig.setup();
         playerDataConfig.save();
+
         playerBackpacks.setup();
         playerBackpacks.save();
 
+        playerBackpacksMaterials.setup();
+        playerBackpacksMaterials.save();
+
         this.getCommands();
         this.registerEvents();
-        this.loadConfigValues();
 
         dataHandler = new DataHandler();
         dataHandler.loadData();
@@ -88,9 +97,6 @@ public class Main extends JavaPlugin {
         this.getCommand("backpack").setTabCompleter(new BackpackTabCompleter());
     }
 
-    private void loadConfigValues() {
-        levelUpMultiplier = (double) getConfig().get("levelUpMultiplier");
-    }
 
     @Override
     public void onDisable() {
