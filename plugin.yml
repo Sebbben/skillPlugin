@@ -17,3 +17,8 @@ commands:
     usage: /<command> <arg>
     aliases:
       - bp
+  exp:
+    description: get current exp levels
+    usage: /<command> <arg>
+    aliases:
+      - e

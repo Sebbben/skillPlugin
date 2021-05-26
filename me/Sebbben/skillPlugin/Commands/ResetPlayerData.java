@@ -16,7 +16,7 @@ public class ResetPlayerData implements CommandExecutor {
         if(sender instanceof Player) {
             if(cmd.getName().equalsIgnoreCase("resetPlayerData")){
                 if (sender.hasPermission("skillplugin.totalWipe")) {
-                    Main.setPlayerData(new HashMap<>());
+                    Main.resetPlayerData();
                     playerDataConfig.get().set("data", "");
                     sender.sendMessage("All Data Wiped");
                 }
